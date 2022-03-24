@@ -1,0 +1,22 @@
+.tile {
+    position: absolute;
+}
+
+#workspace {
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    background: #dde8e4;
+
+    /* Предотвращает перехват инициативы браузером
+     * при перемещении карты на устройстве. */
+    touch-action: none;
+}
+
+#pretiles {
+    background: transparent;
+    position: absolute;
+    pointer-events: none;
+}

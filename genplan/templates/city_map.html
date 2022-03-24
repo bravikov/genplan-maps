@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{% endblock %}
+
+{% block head %}
+    <script src={% static 'maps/'|add:city|add:'/tiles/info.js' %}></script>
+    <script src={% static 'maps/'|add:city|add:'/info.js' %}></script>
+
+    <link rel="stylesheet" href={% static 'engine/style.css' %}>
+    <script>
+        const mapPath = "{% static 'maps/'|add:city %}";
+    </script>
+    <script src={% static 'engine/engine.js' %}></script>
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
