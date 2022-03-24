@@ -4,13 +4,11 @@
 {% block title %}{% endblock %}
 
 {% block head %}
-    <script src={% static 'maps/'|add:city|add:'/tiles/info.js' %}></script>
-    <script src={% static 'maps/'|add:city|add:'/info.js' %}></script>
+    <script src="https://storage.yandexcloud.net/genplan-maps/{{ city }}/tiles/info.js"></script>
+    <script src="https://storage.yandexcloud.net/genplan-maps/{{ city }}/info.js"></script>
+    <script>const mapPath = "https://storage.yandexcloud.net/genplan-maps/{{ city }}";</script>
 
     <link rel="stylesheet" href={% static 'engine/style.css' %}>
-    <script>
-        const mapPath = "{% static 'maps/'|add:city %}";
-    </script>
     <script src={% static 'engine/engine.js' %}></script>
 {% endblock %}
 
