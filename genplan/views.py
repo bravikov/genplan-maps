@@ -14,15 +14,24 @@ maps_config = {
     'kazan': {
         'name': 'Казань',
         'maps': {
-            'main': CityMap('Основной чертеж Генерального плана городского округа Казань (карта функциональных зон)',
+            'main': CityMap('Основная карта (функциональные зоны)',
                             'Основная карта Казань', 'kazan'),
-            'borders': CityMap('Карта границ населенного пункта г. Казани', 'Границы Казань', 'kazan-maps/borders'),
+            'borders': CityMap('Границы',
+                               'Границы Казань', 'kazan-maps/borders'),
+            'roads': CityMap('Дороги',
+                             'Дороги Казань', 'kazan-maps/roads'),
+            'social': CityMap('Объекты социальной инфраструктуры',
+                              'Соц. объекты Казань', 'kazan-maps/social'),
+            'electrotransport': CityMap('Электротранспорт',
+                                        'Электротранспорт Казань', 'kazan-maps/electrotransport'),
+            'nature': CityMap('Природно-рекреационный комплекс',
+                              'Природа Казань', 'kazan-maps/nature'),
         },
     },
     'gelendzhik': {
         'name': 'Геленджик',
         'maps': {
-            'main': CityMap('Размещение объектов местного значения г. Геленджик', 'Объекты Геленджик', 'gelendzhik'),
+            'main': CityMap('Объекты г. Геленджик', 'Объекты Геленджик', 'gelendzhik'),
         },
     },
 }
