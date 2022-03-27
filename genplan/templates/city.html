@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<ul>
+    {% for map in maps %}
+        <li><a href={{ map.link }}>{{ map.name }}</a></li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

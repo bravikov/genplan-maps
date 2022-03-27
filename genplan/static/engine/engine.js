@@ -428,6 +428,6 @@ workspaceContainer.addEventListener("wheel", event => {
 
 window.onload = function() {
     document.getElementsByTagName("body")[0].appendChild(workspaceContainer);
-    document.getElementsByTagName("title")[0].innerHtml = mapTitle;
+    document.title = mapTitle;
     main();
 };

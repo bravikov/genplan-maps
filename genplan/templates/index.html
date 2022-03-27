@@ -1,11 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}Генпланы России{% endblock %}
+
 {% block content %}
 
 <ul>
-    <li><a href="/kazan">Казань</a></li>
-    <li><a href="/gelendzhik">Геленджик</a></li>
+{% for city in cities %}
+    <li>
+        <a href={{ city.link }}>{{ city.name }}</a>
+        <ul>
+            {% for map in city.maps %}
+                <li><a href={{ map.link }}>{{ map.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endfor %}
 </ul>
 
 {% endblock %}

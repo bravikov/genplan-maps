@@ -4,9 +4,11 @@
 {% block title %}{% endblock %}
 
 {% block head %}
-    <script src="https://storage.yandexcloud.net/genplan-maps/{{ city }}/tiles/info.js"></script>
-    <script src="https://storage.yandexcloud.net/genplan-maps/{{ city }}/info.js"></script>
-    <script>const mapPath = "https://storage.yandexcloud.net/genplan-maps/{{ city }}";</script>
+    <script src="{{ maps_storage }}/genplan-maps/{{ map_path }}/tiles/info.js"></script>
+    <script>
+        const mapTitle = "{{ map_title }}";
+        const mapPath = "{{ maps_storage }}/genplan-maps/{{ map_path }}";
+    </script>
 
     <link rel="stylesheet" href={% static 'engine/style.css' %}>
     <script src={% static 'engine/engine.js' %}></script>

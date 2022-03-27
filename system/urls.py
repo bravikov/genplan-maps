@@ -1,8 +1,9 @@
-from django.urls import path, include
+from django.urls import path
 
 import genplan.views
 
 urlpatterns = [
-    path("", genplan.views.index),
-    path("<str:city>", genplan.views.city_map),
+    path('', genplan.views.index_page),
+    path('<str:city_name>', genplan.views.city_page),
+    path('<str:city_name>/<str:city_map_name>', genplan.views.city_map_page),
 ]
