@@ -123,3 +123,7 @@ def city_map_page(request, city_name: str, city_map_name: str):
     }
 
     return TemplateResponse(request, "city_map.html", args)
+
+
+def about_page(request):
+    return TemplateResponse(request, "about.html")

@@ -5,19 +5,44 @@
 
 {% block content %}
 
-<h1>Генпланы России</h1>
+<div class="container">
 
-<ul>
-{% for city in cities %}
-    <li>
-        <a href={{ city.link }}>{{ city.name }}</a>
-        <ul>
-            {% for map in city.maps %}
-                <li><a href={{ map.link }}>{{ map.name }}</a></li>
-            {% endfor %}
-        </ul>
-    </li>
-{% endfor %}
-</ul>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="about">О проекте</a>
+                </li>
+              </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1 class="display-1">Генпланы России</h1>
+
+    <h3>Карты городов</h3>
+
+    <div class="list-group">
+        {% for city in cities %}
+            <a class="list-group-item list-group-item-action" data-bs-toggle="collapse" href="#collapse{{ city.name }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+                <h4>{{ city.name }}</h4>
+            </a>
+            <div class="collapse" id="collapse{{ city.name }}">
+                <strong><a class="list-group-item list-group-item-action" href={{ city.link }}>Генплан</a></strong>
+                <div class="list-group">
+                    {% for map in city.maps %}
+                        <a class="list-group-item list-group-item-action" href={{ map.link }}>{{ map.name }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}
