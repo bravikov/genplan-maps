@@ -49,3 +49,9 @@ http://192.168.1.101:8002/
 cd local-maps
 aws --endpoint-url=https://storage.yandexcloud.net s3 cp --recursive gelendzhik-maps s3://genplan-maps/gelendzhik-maps
 ```
+
+# Разработка
+
+Сайт сделан на Django.
+
+Движок карты написан на JavaScript. Движок расположен в папке genplan/static/engine.
