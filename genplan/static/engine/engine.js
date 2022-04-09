@@ -218,18 +218,8 @@ workspaceContainer.ondragstart = function() {
     return false;
 };
 
-let primaryPointerId = NaN;
-let secondaryPointerId = NaN;
-let pointerCount = 0;
-
-class Pointer {
-    constructor(position) {
-        this.position = position;
-    }
-}
-
 // Словарь содержит все указывающие объекты экрана, активные в данный момент.
-// Ключ: pointer ID, значение: Pointer
+// Ключ: pointer ID, значение: Point
 let activePointersMap = new Map();
 
 function debugPointers() {
@@ -329,7 +319,21 @@ function zoom(zoomIn) {
 let pointersScale_px = 0;
 
 // Порог при котором изменяется уровень тайлов и сбрасывается pointersScale_px.
-const pointersScaleThreshold_px = 15;
+const pointersScaleThreshold_px = 50;
+
+function getSecondPointerId(firstPointerId)
+{
+    const pointer_ids_interator = activePointersMap.keys();
+    const id = pointer_ids_interator.next().value;
+    if (id == firstPointerId)
+    {
+        return pointer_ids_interator.next().value;
+    }
+    else
+    {
+        return id;
+    }
+}
 
 workspaceContainer.addEventListener('pointermove', event => {
     debug("pointermove");
@@ -381,12 +385,33 @@ workspaceContainer.addEventListener('pointermove', event => {
     }
 
     // Два указателя на экране. Два пальца.
-    // Масштабиуем.
-    if (activePointersMap.size === 2 && event.isPrimary) {
+    // Масштабируем.
+    if (activePointersMap.size === 2) {
+        const secondPointer = activePointersMap.get(getSecondPointerId(pointerId))
+
+        const rectCenterX = (secondPointer.x + event.offsetX) / 2;
+        const rectCenterY = (secondPointer.y + event.offsetY) / 2;
+
+        setFocusPosition(rectCenterX, rectCenterY);
+
+        const previousDistanceX = Math.abs(secondPointer.x - currentPointer.x);
+        const currentDistanceX = Math.abs(secondPointer.x - event.offsetX);
+
+        const previousDistanceY = Math.abs(secondPointer.y - currentPointer.y);
+        const currentDistanceY = Math.abs(secondPointer.y - event.offsetY);
+
+        // Рассчитываем расстояния между пальцами по теореме пифагора.
+        // Предыдущее расстояние между пальцами.
+        const previousPointerDistance = Math.sqrt(Math.pow(previousDistanceX, 2) + Math.pow(previousDistanceY, 2));
+        // Текущее расстояние между пальцами.
+        const currentPointerDistance = Math.sqrt(Math.pow(currentDistanceX, 2) + Math.pow(currentDistanceY, 2));
+
+        const changedDistance = currentPointerDistance - previousPointerDistance;
+
         debug("Масштабирование пальцами.");
-        pointersScale_px -= pointerDeltaY;
+        pointersScale_px += changedDistance;
         debug("pointersScale_px:", pointersScale_px);
-        debug("pointerDeltaY:", pointerDeltaY);
+        debug("pointerDeltaY:", changedDistance);
 
         if (Math.abs(pointersScale_px) >= pointersScaleThreshold_px) {
             const zoomIn = Math.sign(pointersScale_px) == 1;
@@ -405,18 +430,18 @@ workspaceContainer.addEventListener('pointermove', event => {
     currentPointer.y = event.offsetY;
 });
 
-let wheel_is_slepping = false;
+let wheel_is_sleeping = false;
 
 workspaceContainer.addEventListener("wheel", event => {
     debug("wheel");
     debug(event.deltaX, event.deltaY, event.deltaZ, event.deltaMode, event.wheelDelta, event.wheelDeltaX, event.wheelDeltaY);
-    if (wheel_is_slepping) {
+    if (wheel_is_sleeping) {
         return;
     }
 
-    wheel_is_slepping = true;
+    wheel_is_sleeping = true;
     setTimeout(function wakeup_wheel() {
-        wheel_is_slepping = false;
+        wheel_is_sleeping = false;
     }, 200);
 
     event.preventDefault();
