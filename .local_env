@@ -1,0 +1,9 @@
+export SECRET_KEY='zir5l1mdp@y&-dsa2q4!b)6p-!tr%74*z)n!8ou%ykvg2%fu)9'
+export DEBUG='True'
+
+# Using:
+#     cd ../local-maps/
+#     python3 -m http.server 8001
+export MAPS_STORAGE='http://192.168.1.101:8001'
+
+#export MAPS_STORAGE='https://storage.yandexcloud.net'
