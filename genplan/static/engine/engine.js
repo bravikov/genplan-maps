@@ -434,7 +434,9 @@ let wheel_is_sleeping = false;
 
 workspaceContainer.addEventListener("wheel", event => {
     debug("wheel");
+    event.preventDefault();
     debug(event.deltaX, event.deltaY, event.deltaZ, event.deltaMode, event.wheelDelta, event.wheelDeltaX, event.wheelDeltaY);
+
     if (wheel_is_sleeping) {
         return;
     }
@@ -444,7 +446,7 @@ workspaceContainer.addEventListener("wheel", event => {
         wheel_is_sleeping = false;
     }, 200);
 
-    event.preventDefault();
+
     const zoomIn = Math.sign(event.deltaY) == -1;
     zoom(zoomIn);
 });
