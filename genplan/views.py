@@ -96,11 +96,47 @@ maps_config = {
                               'Защита от природных процессов', 'chelyabinsk-maps/nature'),
         },
     },
+    '''
+    'penza': {
+        'name': 'Пенза',
+        'maps': {
+            '0': CityMap('Карта электро-, тепло-, газоснабжения', '', 'penza-maps/0'),
+            '1': CityMap('Карта планируемого размещения ОКС местного значения', '', 'penza-maps/1'),
+            '2': CityMap('Карта инженерной подготовки территории', '', 'penza-maps/2'),
+            '3': CityMap('Карта водоотведения', '', 'penza-maps/3'),
+            '4': CityMap('Карта функциональных зон', '', 'penza-maps/4'),
+            '5': CityMap('Карта автомобильных дорог', '', 'penza-maps/5'),
+            '6': CityMap('Карта границ города Пензы', '', 'penza-maps/6'),
+        },
+    },
+    '''
+    'kransnodar': {
+        'name': 'Краснодар',
+        'maps': {
+            'functional': CityMap('Функциональные зоны', '', 'krasnodar-maps/functional'),
+            'plan-education': CityMap('Планируемые образовательные объекты', '', 'krasnodar-maps/plan-education'),
+            'plan-optional-education': CityMap('Планируемые объекты дополнительного образования', '', 'krasnodar-maps/plan-optional-education'),
+            'plan-healthcare': CityMap('Планируемые объекты здравоохранения', '', 'krasnodar-maps/plan-healthcare'),
+            'plan-green': CityMap('Планируемое озеленение', '', 'krasnodar-maps/plan-green'),
+            'plan-roads': CityMap('Планируемые автомобильные дороги', '', 'krasnodar-maps/plan-roads'),
+            'plan-federal-transport': CityMap('Планируемый федеральная и региональная транспортная инфраструктура', '', 'krasnodar-maps/plan-federal-transport'),
+            'plan-city-transport': CityMap('Планируемый городской общественный транспорт', '', 'krasnodar-maps/plan-city-transport'),
+            'plan-sport': CityMap('Планируемые спортивные объекты', '', 'krasnodar-maps/plan-sport'),
+            'plan-culture': CityMap('Планируемые культурные объекты', '', 'krasnodar-maps/plan-culture'),
+            'ecology': CityMap('Природно-экологический каркас', '', 'krasnodar-maps/ecology'),
+            'real-healthcare': CityMap('Существующие объекты здравоохранения', '', 'krasnodar-maps/real-healthcare'),
+            'real-sport': CityMap('Существующие спортивные объекты', '', 'krasnodar-maps/real-sport'),
+            'real-culture': CityMap('Существующие культурные объекты', '', 'krasnodar-maps/real-culture'),
+            'real-education': CityMap('Существующие образовательные объекты', '', 'krasnodar-maps/real-education'),
+            'real-roads': CityMap('Современное состояние автомобильных дорог', '', 'krasnodar-maps/real-roads'),
+        },
+    },
 }
 
 
 def get_maps(city_link):
     result_maps = []
+
     maps = maps_config[city_link]['maps']
     for map_link in maps:
         result_map = {
