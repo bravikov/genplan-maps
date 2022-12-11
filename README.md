@@ -1,8 +1,23 @@
 # Генпланы России
 
-http://www.genplan-maps.ru/
+https://genplan-maps.ru/
+
+# Разворачивание Docker-контейнера
+
+```bash
+cd genplan-maps
+docker build -t genplan-maps .
+docker run -d -v "$PWD":/usr/src/app -p 443:8001 genplan-maps
+```
 
 # Локальный запуск приложения
+
+## Установка зависимостей на macOS
+
+```bash
+brew install postgresql
+pip3 install -r requirements.txt
+```
 
 Запустить сервер для раздачи тайлов:
 
@@ -46,7 +61,7 @@ http://192.168.1.101:8002/
 Публикация карт в Яндекс Облако:
 
 ```
-cd local-maps
+cd local-maps/genplan-maps
 aws --endpoint-url=https://storage.yandexcloud.net s3 cp --recursive gelendzhik-maps s3://genplan-maps/gelendzhik-maps
 ```
 

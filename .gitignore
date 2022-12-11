@@ -5,3 +5,6 @@ staticfiles
 db.sqlite3
 getting-started/*
 .idea/*
+certificate.crt
+private.key
+.DS_Store
