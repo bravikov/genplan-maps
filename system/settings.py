@@ -14,6 +14,7 @@ ALLOWED_HOSTS = (
     'localhost',
     '.genplan-maps.ru',
     'genplan-maps.herokuapp.com',
+    'genplan-maps-ru',
 )
 
 
