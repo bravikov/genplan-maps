@@ -26,14 +26,22 @@ cd local-maps
 python3 -m http.server 8001
 ```
 
-В папке local-maps должны быть карты.
+В папке local-maps должны быть карты (папки с тайлами). Пример структуры папок:
 
-Перед запуском приложения нужно настроить окружение:
+    local-maps
+        genplan-maps
+            kazan
+            krasnodar
+            ...
+
+Перед дальнейшим запуском приложения нужно настроить окружение:
 
 ```bash
 cd genplan-maps
 source .local_env
 ```
+
+В .local_env нужно указать свой IP-адрес в MAPS_STORAGE.
 
 Запустить приложение:
 

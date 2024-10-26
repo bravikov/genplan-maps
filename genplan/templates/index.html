@@ -34,10 +34,10 @@
 
     <div class="list-group">
         {% for city in cities %}
-            <a class="list-group-item list-group-item-action" data-bs-toggle="collapse" href="#collapse{{ city.name }}" role="button" aria-expanded="false" aria-controls="collapseExample">
+            <a class="list-group-item list-group-item-action" data-bs-toggle="collapse" href="#collapse{{ city.id }}" role="button" aria-expanded="false" aria-controls="collapseExample">
                 <h4>{{ city.name }}</h4>
             </a>
-            <div class="collapse" id="collapse{{ city.name }}">
+            <div class="collapse" id="collapse{{ city.id }}">
                 <strong><a class="list-group-item list-group-item-action" href={{ city.link }}>Генплан</a></strong>
                 <div class="list-group">
                     {% for map in city.maps %}
