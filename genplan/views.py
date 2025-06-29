@@ -15,17 +15,17 @@ maps_config = {
         'name': 'Казань (от 2020)',
         'maps': {
             'main': CityMap('Основная карта (функциональные зоны)',
-                            'Основная карта Казань', 'kazan'),
+                            'Основная карта – Казань', 'kazan'),
             'borders': CityMap('Границы',
-                               'Границы Казань', 'kazan-maps/borders'),
+                               'Границы – Казань', 'kazan-maps/borders'),
             'roads': CityMap('Дороги',
-                             'Дороги Казань', 'kazan-maps/roads'),
+                             'Дороги – Казань', 'kazan-maps/roads'),
             'social': CityMap('Объекты социальной инфраструктуры',
-                              'Соц. объекты Казань', 'kazan-maps/social'),
+                              'Соц. объекты – Казань', 'kazan-maps/social'),
             'electrotransport': CityMap('Электротранспорт',
-                                        'Электротранспорт Казань', 'kazan-maps/electrotransport'),
+                                        'Электротранспорт – Казань', 'kazan-maps/electrotransport'),
             'nature': CityMap('Природно-рекреационный комплекс',
-                              'Природа Казань', 'kazan-maps/nature'),
+                              'Природа – Казань', 'kazan-maps/nature'),
         },
     },
     'gelendzhik': {
@@ -73,27 +73,27 @@ maps_config = {
         'name': 'Челябинск',
         'maps': {
             'functional-zones-1': CityMap('Функциональные зоны',
-                                          'Функциональные зоны', 'chelyabinsk-maps/functional-zones-1'),
+                                          'Функциональные зоны – Челябинск', 'chelyabinsk-maps/functional-zones-1'),
             'functional-zones-2': CityMap('Функциональные зоны (дополнительно)',
                                           'Функциональные зоны (дополнительно)', 'chelyabinsk-maps/functional-zones-2'),
             'transport-1': CityMap('Транспорт',
-                                   'Транспорт', 'chelyabinsk-maps/transport-1'),
+                                   'Транспорт – Челябинск', 'chelyabinsk-maps/transport-1'),
             'transport-2': CityMap('Транспорт (дополнительно)',
-                                   'Транспорт (дополнительно)', 'chelyabinsk-maps/transport-2'),
+                                   'Транспорт (дополнительно) – Челябинск', 'chelyabinsk-maps/transport-2'),
             'culture-1': CityMap('Объекты культурного наследия',
-                                 'Объекты культурного наследия', 'chelyabinsk-maps/culture-1'),
+                                 'Объекты культурного наследия – Челябинск', 'chelyabinsk-maps/culture-1'),
             'culture-2': CityMap('Объекты культурного наследия (дополнительно)',
-                                 'Объекты культурного наследия', 'chelyabinsk-maps/culture-2'),
+                                 'Объекты культурного наследия (дополнительно) – Челябинск', 'chelyabinsk-maps/culture-2'),
             'garbage': CityMap('Отходы',
-                               'Отходы', 'chelyabinsk-maps/garbage'),
+                               'Отходы – Челябинск', 'chelyabinsk-maps/garbage'),
             'social': CityMap('Социальная инфрастуктура',
-                              'Социальная инфрастуктура', 'chelyabinsk-maps/social'),
+                              'Социальная инфрастуктура – Челябинск', 'chelyabinsk-maps/social'),
             'borders': CityMap('Границы',
-                               'Границы', 'chelyabinsk-maps/borders'),
+                               'Границы – Челябинск', 'chelyabinsk-maps/borders'),
             'special-zones': CityMap('Особые зоны',
-                                     'Особые зоны', 'chelyabinsk-maps/special-zones'),
+                                     'Особые зоны – Челябинск', 'chelyabinsk-maps/special-zones'),
             'nature': CityMap('Защита от природных процессов',
-                              'Защита от природных процессов', 'chelyabinsk-maps/nature'),
+                              'Защита от природных процессов – Челябинск', 'chelyabinsk-maps/nature'),
         },
     },
     # 'penza': {
@@ -219,10 +219,16 @@ def get_maps_storage():
 def city_map_page(request, city_name: str, city_map_name: str):
     maps = maps_config[city_name]['maps']
 
+    title = maps[city_map_name].title
+    if not title:
+        map_name = maps[city_map_name].name
+        rus_city_name = maps_config[city_name]['name']
+        title = f'{map_name} – {rus_city_name}'
+
     args = {
         'maps_storage': get_maps_storage(),
         'map_path': maps[city_map_name].path,
-        'map_title': maps[city_map_name].title,
+        'map_title': title,
     }
 
     return TemplateResponse(request, "city_map.html", args)
