@@ -8,3 +8,5 @@ getting-started/*
 certificate.crt
 private.key
 .DS_Store
+.local_env
+.prod_env
