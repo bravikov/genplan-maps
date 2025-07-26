@@ -1,7 +1,8 @@
 import os
 from django.shortcuts import render
 from django.template.response import TemplateResponse
-from urllib.parse import quote
+
+from system import settings
 
 
 class CityMap:
@@ -235,4 +236,7 @@ def city_map_page(request, city_name: str, city_map_name: str):
 
 
 def about_page(request):
-    return TemplateResponse(request, "about.html")
+    donate = settings.DONATE_SNIPPET
+    if not donate:
+        donate = 'Тут должна быть кнопка для пожертвований, но кажется ее забыли настроить.'
+    return TemplateResponse(request, "about.html", {'donate': donate})
