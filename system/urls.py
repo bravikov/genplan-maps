@@ -7,6 +7,8 @@ import genplan.views
 
 
 class StaticViewSitemap(sitemaps.Sitemap):
+    protocol = "https"
+
     def items(self):
         cities = genplan.views.cities_list()
 
