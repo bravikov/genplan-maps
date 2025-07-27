@@ -1,6 +1,6 @@
-User-Agent: *
-Disallow: /genplan-maps/
-
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /django-admin
 
+Sitemap: https://genplan-maps.ru/sitemap.xml
