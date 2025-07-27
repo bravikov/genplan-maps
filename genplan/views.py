@@ -1,4 +1,6 @@
 import os
+
+from django.http import Http404
 from django.shortcuts import render
 from django.template.response import TemplateResponse
 
@@ -205,6 +207,9 @@ def index_page(request):
 
 
 def city_page(request, city_name: str):
+    if city_name not in maps_config:
+        raise Http404("Город не найден.")
+
     args = {
         'title': maps_config[city_name]['name'],
         'maps': get_maps(city_name),
@@ -218,7 +223,13 @@ def get_maps_storage():
 
 
 def city_map_page(request, city_name: str, city_map_name: str):
+    if city_name not in maps_config:
+        raise Http404("Город не найден.")
+
     maps = maps_config[city_name]['maps']
+
+    if city_map_name not in maps:
+        raise Http404("Карта не найдена.")
 
     title = maps[city_map_name].title
     if not title:
