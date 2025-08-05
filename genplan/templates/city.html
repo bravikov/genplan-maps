@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}{{ title }}{% endblock %}
+{% block title %}{{ title }} - Генплан{% endblock %}
+
+{% block head %}
+    <meta name="description" content="Генеральный план города {{ title }}. Список карт. Карты планируемых объектов и карты существующих объектов." />
+{% endblock %}
 
 {% block content %}
 
