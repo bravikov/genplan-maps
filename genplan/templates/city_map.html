@@ -4,7 +4,7 @@
 {% block title %}{% endblock %}
 
 {% block head %}
-    <meta name="description" content="Карта из генерального план города {{ title }}. Карта '{{ map_title }}'." />
+    <meta name="description" content="Карта из генерального план города: '{{ map_title }}'." />
     <script src="{{ maps_storage }}/genplan-maps/{{ map_path }}/tiles/info.js"></script>
     <script>
         const mapTitle = "{{ map_title }}";
