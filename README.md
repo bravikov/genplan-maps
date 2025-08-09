@@ -47,7 +47,7 @@ source .local_env
 
 ```bash
 cd genplan-maps
-gunicorn -b 0.0.0.0:8002 system.wsgi
+gunicorn -b 127.0.0.1:8002 system.wsgi
 ```
 
 Запустите браузер на той же машине, где запущено приложение и введите адрес:

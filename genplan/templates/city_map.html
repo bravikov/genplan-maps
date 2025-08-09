@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}{% endblock %}
+{% block title %}{{ map_title }}{% endblock %}
 
 {% block head %}
     <meta name="description" content="Карта из генерального план города: '{{ map_title }}'." />
@@ -11,9 +11,12 @@
         const mapPath = "{{ maps_storage }}/genplan-maps/{{ map_path }}";
     </script>
 
-    <link rel="stylesheet" href={% static 'engine/style.css' %}>
-    <script src={% static 'engine/engine.js' %}></script>
+    <link rel="stylesheet" href="{% static 'engine/style.css' %}">
+    <script src="{% static 'engine/engine.js' %}"></script>
 {% endblock %}
 
 {% block content %}
+<p>
+    Здесь должна быть карта: "{{ map_title }}". Если она не отображается, то возможно у вас запрещен JavaScript. Он может быть запрещен как индивидуально для сайта, так и в целом для браузера. Перейдите в настройки сайтов и разрешите JavaScript.
+</p>
 {% endblock %}
